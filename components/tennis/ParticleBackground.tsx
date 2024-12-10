@@ -8,6 +8,7 @@ import { random } from "maath";
 
 function ParticleField() {
   const ref = useRef<THREE.Points>(null);
+
   const positions = useMemo(() => {
     const positions = new Float32Array(2000 * 3);
     random.inSphere(positions, { radius: 8 });
@@ -36,6 +37,10 @@ function ParticleField() {
 }
 
 export function ParticleBackground() {
+  if (typeof window === "undefined") {
+    return null; // サーバーサイドでは何もレンダリングしない
+  }
+
   return (
     <div className="fixed inset-0 z-0">
       <Canvas camera={{ position: [0, 0, 1] }}>

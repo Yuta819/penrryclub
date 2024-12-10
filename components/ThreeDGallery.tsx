@@ -132,8 +132,7 @@ export function ThreeDGallery() {
     updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
-  }, []);
-
+  }, []); //windowをサーバーに認識させない処理
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       if (isRotating) {

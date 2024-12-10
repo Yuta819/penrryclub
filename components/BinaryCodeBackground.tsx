@@ -12,7 +12,7 @@ function BinaryText({
   position: [number, number, number];
   rotationAxis: THREE.Vector3;
 }) {
-  const textRef = useRef<THREE.Mesh>(null); // 型を明示
+  const textRef = useRef<THREE.Mesh>(null);
 
   const binaryString = useMemo(() => {
     const options = ["0", "1", "01", "10"];
@@ -27,12 +27,7 @@ function BinaryText({
   });
 
   return (
-    <Text
-      ref={textRef} // ref に型指定した useRef を渡す
-      position={position}
-      fontSize={0.5}
-      color="green"
-    >
+    <Text ref={textRef} position={position} fontSize={0.5} color="green">
       {binaryString}
     </Text>
   );
@@ -40,7 +35,7 @@ function BinaryText({
 
 function BinaryCloud() {
   const binaryTexts = useMemo(() => {
-    const texts: JSX.Element[] = []; // 型を明示的に指定
+    const texts: JSX.Element[] = []; // React要素の配列として型指定
     for (let i = 0; i < 200; i++) {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(Math.random() * 2 - 1);
@@ -60,10 +55,14 @@ function BinaryCloud() {
     return texts;
   }, []);
 
-  return <>{binaryTexts}</>; // 明示的に型を指定した要素を返す
+  return <>{binaryTexts}</>;
 }
 
 export function BinaryCodeBackground() {
+  if (typeof window === "undefined") {
+    return null; // サーバーサイドでは何も描画しない
+  }
+
   return (
     <div className="absolute inset-0 z-0">
       <Canvas camera={{ position: [0, 0, 15] }}>
