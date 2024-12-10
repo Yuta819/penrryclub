@@ -18,7 +18,7 @@ export function SoccerHero() {
 
       <motion.div className="absolute inset-0" style={{ opacity, scale }}>
         <Image
-          src="/images/soccer/PCサッカー.png"
+          src="/images/circles/soccer/PCサッカー.png"
           alt="Soccer ball in dramatic lighting"
           fill
           className="object-cover"

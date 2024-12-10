@@ -83,7 +83,7 @@ export function LiveStage() {
 
         {/* モバイル用背景画像 */}
         <Image
-          src="/images/live-stage/OS-hero.png"
+          src="/images/circles/live-stage/OS-hero.png"
           alt="Concert background mobile"
           fill
           className="object-cover md:hidden"
@@ -91,7 +91,7 @@ export function LiveStage() {
         />
         {/* PC用背景画像 */}
         <Image
-          src="/images/live-stage/PC-hero.png"
+          src="/images/circles/live-stage/PC-hero.png"
           alt="Concert background desktop"
           fill
           className="hidden md:block object-cover"
