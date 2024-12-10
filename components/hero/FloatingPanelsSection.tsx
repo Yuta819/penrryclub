@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FloatingPanel } from "./FloatingPanel";
 import { Bubble } from "./Bubble";
@@ -75,6 +75,8 @@ export function FloatingPanelsSection() {
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const updateSize = () => {
       if (containerRef.current) {
         const { offsetWidth, offsetHeight } = containerRef.current;
@@ -135,7 +137,6 @@ export function FloatingPanelsSection() {
       };
     };
 
-    // 初期パネルの生成
     if (panels.length === 0) {
       const initialPanels = Array.from({ length: PANEL_COUNT }, (_, i) =>
         createPanel((i * PANEL_ANIMATION_DURATION) / PANEL_COUNT)
@@ -144,7 +145,6 @@ export function FloatingPanelsSection() {
       setCurrentPreviewIndex(PANEL_COUNT % shuffledPreviews.length);
     }
 
-    // 初期泡の生成
     if (bubbles.length === 0) {
       const initialBubbles = Array.from({ length: BUBBLE_COUNT }, () =>
         createBubble()
@@ -152,7 +152,6 @@ export function FloatingPanelsSection() {
       setBubbles(initialBubbles);
     }
 
-    // 新しいパネルの追加
     const panelIntervalId = setInterval(() => {
       setPanels((prevPanels) => {
         const newPanel = createPanel();
@@ -167,13 +166,12 @@ export function FloatingPanelsSection() {
       });
     }, (PANEL_ANIMATION_DURATION * 1000) / PANEL_COUNT);
 
-    // 新しい泡の追加
     const bubbleIntervalId = setInterval(() => {
       setBubbles((prevBubbles) => {
         const newBubble = createBubble();
         return [...prevBubbles.slice(1), newBubble];
       });
-    }, 1000); // 1秒ごとに新しい泡を追加
+    }, 1000);
 
     return () => {
       clearInterval(panelIntervalId);
@@ -231,7 +229,7 @@ export function FloatingPanelsSection() {
             delay: panel.delay,
             repeat: 0,
             repeatDelay: 0,
-            ease: [0.43, 0.13, 0.23, 0.96], // カスタムイージング関数
+            ease: [0.43, 0.13, 0.23, 0.96],
           }}
           style={{
             width: panelSize,

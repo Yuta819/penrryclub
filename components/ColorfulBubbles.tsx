@@ -48,10 +48,15 @@ export function ColorfulBubbles() {
 
 function BubbleAnimation({ bubble }: { bubble: Bubble }) {
   const controls = useAnimation();
+  const [viewportHeight, setViewportHeight] = useState(1000); // デフォルト値
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      setViewportHeight(window.innerHeight); //windowをサーバーに認識させない処理
+    }
+
     controls.start({
-      y: [window.innerHeight, -bubble.size],
+      y: [viewportHeight, -bubble.size],
       x: [
         `${bubble.x}%`,
         `${bubble.x + (Math.random() - 0.5) * 30}%`,
@@ -65,7 +70,7 @@ function BubbleAnimation({ bubble }: { bubble: Bubble }) {
         times: [0, 0.3, 0.6, 1],
       },
     });
-  }, [bubble, controls]);
+  }, [bubble, controls, viewportHeight]);
 
   return (
     <motion.div

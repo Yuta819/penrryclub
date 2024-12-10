@@ -27,7 +27,7 @@ export function InteractiveMusicNote({
   const animationRef = useRef<number>();
 
   useEffect(() => {
-    if (isExploded) {
+    if (isExploded && typeof window !== "undefined") {
       const containerWidth =
         containerRef.current?.clientWidth || window.innerWidth;
       const containerHeight =

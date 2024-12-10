@@ -25,6 +25,8 @@ export default function BasketballPage() {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (typeof window === "undefined") return; // サーバーサイドでは処理をスキップ
+
       const scrollPosition = window.scrollY + window.innerHeight / 2;
       const newIndex = sectionRefs.current.findIndex((ref, index) => {
         if (!ref) return false;

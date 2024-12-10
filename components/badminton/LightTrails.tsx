@@ -12,13 +12,30 @@ interface Trail {
 
 export function LightTrails() {
   const [trails, setTrails] = useState<Trail[]>([]);
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
+    // クライアントサイドでのみ viewport サイズを設定
+    if (typeof window !== "undefined") {
+      setViewport({ width: window.innerWidth, height: window.innerHeight });
+
+      const handleResize = () => {
+        setViewport({ width: window.innerWidth, height: window.innerHeight });
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (viewport.width === 0 || viewport.height === 0) return;
+
     const createTrail = () => {
       const trail = {
         id: Date.now(),
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: Math.random() * viewport.width,
+        y: Math.random() * viewport.height,
         rotation: Math.random() * 360,
       };
       setTrails((prev) => [...prev, trail]);
@@ -29,7 +46,7 @@ export function LightTrails() {
 
     const interval = setInterval(createTrail, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [viewport]);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0">

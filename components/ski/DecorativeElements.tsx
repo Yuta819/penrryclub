@@ -1,8 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export function FloatingShapes() {
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const updateViewport = () => {
+        setViewport({ width: window.innerWidth, height: window.innerHeight });
+      };
+
+      updateViewport(); // 初回実行
+      window.addEventListener("resize", updateViewport);
+
+      return () => window.removeEventListener("resize", updateViewport);
+    }
+  }, []);
+
+  if (viewport.width === 0 || viewport.height === 0) {
+    return null; // 初期ロード中の回避
+  }
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
       {[...Array(20)].map((_, i) => (
@@ -10,14 +30,14 @@ export function FloatingShapes() {
           key={i}
           className="absolute"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * viewport.width,
+            y: Math.random() * viewport.height,
             scale: 0,
             rotate: 0,
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * viewport.width,
+            y: Math.random() * viewport.height,
             scale: [0, 1, 0],
             rotate: [0, 180, 360],
           }}
@@ -29,15 +49,13 @@ export function FloatingShapes() {
           }}
         >
           <div
-            className={`
-              ${
-                i % 3 === 0
-                  ? "w-4 h-4 rounded-full bg-pink-200/20"
-                  : i % 3 === 1
-                  ? "w-6 h-6 rotate-45 bg-sky-200/20"
-                  : "w-8 h-8 rounded-full border border-white/20"
-              }
-            `}
+            className={`${
+              i % 3 === 0
+                ? "w-4 h-4 rounded-full bg-pink-200/20"
+                : i % 3 === 1
+                ? "w-6 h-6 rotate-45 bg-sky-200/20"
+                : "w-8 h-8 rounded-full border border-white/20"
+            }`}
           />
         </motion.div>
       ))}

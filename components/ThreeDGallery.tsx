@@ -118,6 +118,8 @@ export function ThreeDGallery() {
   const sceneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const updateSize = () => {
       if (sceneRef.current) {
         setContainerSize({
@@ -139,15 +141,19 @@ export function ThreeDGallery() {
         const deltaX = e.movementX * sensitivity;
         setRotation((prevRotation) => (prevRotation + deltaX) % 360);
       }
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 10,
-        y: -(e.clientY / window.innerHeight - 0.5) * 10,
-      });
+      if (typeof window !== "undefined") {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 10,
+          y: -(e.clientY / window.innerHeight - 0.5) * 10,
+        });
+      }
     },
     [isRotating]
   );
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     let animationFrameId: number;
 
     const autoRotate = () => {
@@ -165,6 +171,8 @@ export function ThreeDGallery() {
   }, [isAutoRotating, isRotating, isHovering]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", () => setIsRotating(true));
     window.addEventListener("mouseup", () => setIsRotating(false));
@@ -179,7 +187,7 @@ export function ThreeDGallery() {
   const calculatePanelPosition = (index: number, total: number) => {
     const angle = (index * 2 * Math.PI) / total + (rotation * Math.PI) / 180;
     const minDimension = Math.min(containerSize.width, containerSize.height);
-    const baseRadius = minDimension * 0.9; // Updated baseRadius calculation
+    const baseRadius = minDimension * 0.9;
     const radius = baseRadius + Math.sin(angle * 2) * (minDimension * 0.05);
 
     const verticalAmplitude = minDimension * 0.2;
@@ -212,21 +220,16 @@ export function ThreeDGallery() {
           perspective: `${
             Math.max(containerSize.width, containerSize.height) * 1.2
           }px`,
-          perspectiveOrigin: "50% 50%", // 中心に戻す
         }}
       >
         <div
           className="gallery"
           style={{
-            transform: `rotateX(${mousePosition.y}deg) rotateY(${
-              mousePosition.x
-            }deg) translateZ(${
-              -Math.min(containerSize.width, containerSize.height) * 1
-            }px)`, // Updated translateZ value
+            transform: `rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg)`,
             transformStyle: "preserve-3d",
             position: "absolute",
-            left: "20%", // 50%から10%に変更
-            top: "30%", // 50%から30%に変更
+            left: "20%",
+            top: "30%",
             width: "1px",
             height: "1px",
             zIndex: 1,
