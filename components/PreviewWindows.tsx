@@ -14,7 +14,7 @@ export const previews = [
   {
     title: "Magic circle",
     path: "/magic",
-    image: "/images/preview-windows/robot-window.png",
+    image: "/images/preview-windows/magic-window.png",
     description: "Experience the magic",
   },
   {
