@@ -243,9 +243,9 @@ export function FloatingPanelsSection() {
       ))}
       <div className="absolute inset-0 flex items-center justify-center">
         <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white text-center z-50 px-4">
-          学生たちの
+          Your Potential.
           <br />
-          輝く瞬間
+          Ignite it.
         </h1>
       </div>
     </div>

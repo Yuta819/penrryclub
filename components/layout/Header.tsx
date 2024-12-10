@@ -12,38 +12,44 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-2xl font-bold">
-            PENRRY
+            Penrry
           </Link>
           <nav className="hidden md:flex space-x-6">
             <Link href="#" className="hover:text-gray-300">
-              総合
+              Comingsoon
             </Link>
             <Link href="#" className="hover:text-gray-300">
-              テクノロジー
+              Comingsoon
             </Link>
             <Link href="#" className="hover:text-gray-300">
-              スポーツ
+              Comingsoon
             </Link>
             <Link href="#" className="hover:text-gray-300">
-              文化
+              Comingsoon
             </Link>
-            <Link href="/live-stage" className="hover:text-gray-300">
-              ライブステージ
+            <Link href="#" className="hover:text-gray-300">
+              Comingsoon
             </Link>
           </nav>
           <div className="flex items-center space-x-4">
             <div className="relative hidden md:block">
               <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
               <Input
-                placeholder="キーワードで検索"
+                placeholder="Comingsoon"
                 className="pl-10 bg-gray-800 text-white border-gray-700 focus:border-white"
               />
             </div>
             <Button
               variant="outline"
               className="text-white border-white hover:bg-white/20"
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSe8GL9XGLOIZElbr4UUHNijcttR2x1VDOGjZRAhMLmHj3GTRQ/viewform?usp=sf_link",
+                  "_blank"
+                )
+              }
             >
-              ログイン
+              HP無料依頼
             </Button>
           </div>
         </div>

@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">PENRRY</h3>
+            <h3 className="text-lg font-bold mb-4">Penrry</h3>
             <p className="text-sm text-gray-400">
               全国の大学生の活動を応援するプラットフォーム
             </p>
@@ -16,7 +16,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#"
+                  href="/"
                   className="text-sm text-gray-400 hover:text-white"
                 >
                   ホーム
@@ -27,7 +27,7 @@ export function Footer() {
                   href="#"
                   className="text-sm text-gray-400 hover:text-white"
                 >
-                  カテゴリー
+                  Comingsoon
                 </Link>
               </li>
               <li>
@@ -35,15 +35,15 @@ export function Footer() {
                   href="#"
                   className="text-sm text-gray-400 hover:text-white"
                 >
-                  ランキング
+                  Comingsoon
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSe8GL9XGLOIZElbr4UUHNijcttR2x1VDOGjZRAhMLmHj3GTRQ/viewform?usp=sf_link"
                   className="text-sm text-gray-400 hover:text-white"
                 >
-                  新規登録
+                  無料HP作成依頼
                 </Link>
               </li>
             </ul>
@@ -53,8 +53,8 @@ export function Footer() {
             <p className="text-sm text-gray-400">
               お問い合わせはこちらから
               <br />
-              <a href="mailto:info@penrry.com" className="hover:text-white">
-                info@penrry.com
+              <a href="mailto:yuta-i@penrry.com" className="hover:text-white">
+                運営メール
               </a>
             </p>
           </div>
