@@ -1,0 +1,168 @@
+# APIルート実装ガイド
+
+## 1. APIルートの基本構造
+
+APIルートは `pages/api` ディレクトリ内に作成します。例えば、サークル情報を取得するAPIルートを作成する場合：
+
+\`\`\`typescript
+// pages/api/clubs.ts
+import type { NextApiRequest, NextApiResponse } from 'next'
+import prisma from '@/lib/prisma'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    try {
+      const clubs = await prisma.club.findMany()
+      res.status(200).json(clubs)
+    } catch (error) {
+      res.status(500).json({ message: 'エラーが発生しました' })
+    }
+  } else {
+    res.setHeader('Allow', ['GET'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+  }
+}
+\`\`\`
+
+## 2. Prismaクライアントのセットアップ
+
+Prismaクライアントをセットアップし、データベース操作を行うためのインスタンスを作成します：
+
+\`\`\`typescript
+// lib/prisma.ts
+import { PrismaClient } from '@prisma/client'
+
+let prisma: PrismaClient
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient()
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient()
+  }
+  prisma = global.prisma
+}
+
+export default prisma
+\`\`\`
+
+## 3. APIルートの実装例
+
+### サークル一覧の取得
+
+\`\`\`typescript
+// pages/api/clubs/index.ts
+import type { NextApiRequest, NextApiResponse } from 'next'
+import prisma from '@/lib/prisma'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    try {
+      const clubs = await prisma.club.findMany({
+        include: { university: true, tags: true }
+      })
+      res.status(200).json(clubs)
+    } catch (error) {
+      res.status(500).json({ message: 'エラーが発生しました' })
+    }
+  } else {
+    res.setHeader('Allow', ['GET'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+  }
+}
+\`\`\`
+
+### 特定のサークル情報の取得
+
+\`\`\`typescript
+// pages/api/clubs/[id].ts
+import type { NextApiRequest, NextApiResponse } from 'next'
+import prisma from '@/lib/prisma'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { id } = req.query
+
+  if (req.method === 'GET') {
+    try {
+      const club = await prisma.club.findUnique({
+        where: { id: Number(id) },
+        include: { university: true, tags: true, activities: true, events: true }
+      })
+
+      if (club) {
+        res.status(200).json(club)
+      } else {
+        res.status(404).json({ message: 'サークルが見つかりません' })
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'エラーが発生しました' })
+    }
+  } else {
+    res.setHeader('Allow', ['GET'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+  }
+}
+\`\`\`
+
+## 4. フロントエンドとの連携
+
+APIルートを実装したら、フロントエンドコンポーネントから`fetch`や`axios`などを使用してデータを取得します：
+
+\`\`\`typescript
+import { useEffect, useState } from 'react'
+import { Club } from '@/types'
+
+export function ClubList() {
+  const [clubs, setClubs] = useState<Club[]>([])
+
+  useEffect(() => {
+    async function fetchClubs() {
+      const response = await fetch('/api/clubs')
+      const data = await response.json()
+      setClubs(data)
+    }
+    fetchClubs()
+  }, [])
+
+  return (
+    <div>
+      {clubs.map((club) => (
+        <div key={club.id}>{club.name}</div>
+      ))}
+    </div>
+  )
+}
+\`\`\`
+
+## 5. エラーハンドリングとバリデーション
+
+実際の実装では、適切なエラーハンドリングとバリデーションを行うことが重要です。例えば：
+
+\`\`\`typescript
+import { z } from 'zod'
+
+const clubSchema = z.object({
+  name: z.string().min(1).max(100),
+  description: z.string().min(1),
+  memberCount: z.number().int().positive()
+})
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'POST') {
+    try {
+      const validatedData = clubSchema.parse(req.body)
+      // データベースに保存する処理
+      res.status(201).json({ message: 'サークルが作成されました' })
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: 'バリデーションエラー', errors: error.errors })
+      } else {
+        res.status(500).json({ message: 'エラーが発生しました' })
+      }
+    }
+  }
+}
+\`\`\`
+
+これらの手順を参考に、プロジェクトの進行状況に応じてAPIルートを実装してください。データベースとの連携が必要になった時点で、この手順書を活用することをお勧めします。
+

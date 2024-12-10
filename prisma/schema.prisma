@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Prefecture {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  universities University[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model University {
+  id           Int      @id @default(autoincrement())
+  name         String
+  prefecture   Prefecture @relation(fields: [prefectureId], references: [id])
+  prefectureId Int
+  clubs        Club[]
+  website      String?
+  logoUrl      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([name, prefectureId])
+}
+
+model Club {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String
+  university   University @relation(fields: [universityId], references: [id])
+  universityId Int
+  category     String
+  memberCount  Int
+  established  DateTime
+  website      String?
+  email        String?
+  logoUrl      String?
+  bannerUrl    String?
+  status       ClubStatus @default(ACTIVE)
+  socialMedia  Json?
+  activities   Activity[]
+  events       Event[]
+  tags         Tag[]
+  members      UserClub[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([name, universityId])
+}
+
+model Activity {
+  id          Int      @id @default(autoincrement())
+  club        Club     @relation(fields: [clubId], references: [id])
+  clubId      Int
+  title       String
+  description String
+  imageUrl    String?
+  date        DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  club        Club     @relation(fields: [clubId], references: [id])
+  clubId      Int
+  title       String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  location    String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  clubs Club[]
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  name          String
+  password      String
+  role          Role      @default(MEMBER)
+  profileImageUrl String?
+  bio           String?
+  clubs         UserClub[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model UserClub {
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  club      Club     @relation(fields: [clubId], references: [id])
+  clubId    Int
+  role      ClubRole @default(MEMBER)
+  joinedAt  DateTime @default(now())
+
+  @@id([userId, clubId])
+}
+
+enum Role {
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+
+enum ClubRole {
+  LEADER
+  EXECUTIVE
+  MEMBER
+}
+
+enum ClubStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
