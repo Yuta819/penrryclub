@@ -56,7 +56,7 @@ export default function RobotHero() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 text-blue-400 tracking-wider"
             style={{ textShadow: "0 0 10px rgba(0, 123, 255, 0.5)" }}
           >
-            PENRRY ROBOTICS
+            Circle ROBOTICS
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8">
             Innovating the Future, One Robot at a Time
