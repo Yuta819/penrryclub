@@ -111,3 +111,50 @@
 .text-shadow-elegant {
   text-shadow: 2px -2px 0 rgba(220, 38, 38, 0.7), 4px -4px 0 rgba(0, 0, 0, 0.5);
 }
+
+@keyframes shine {
+  0% {
+    background-position: -100% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.metallic-text {
+  background: linear-gradient(
+    90deg,
+    #d4d4d4 0%,
+    #ffffff 25%,
+    #d4d4d4 50%,
+    #ffffff 75%,
+    #d4d4d4 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.metallic-text-dark {
+  background: linear-gradient(
+    90deg,
+    #2c2c2c 0%,
+    #4a4a4a 25%,
+    #2c2c2c 50%,
+    #4a4a4a 75%,
+    #2c2c2c 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.metallic-icon {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
