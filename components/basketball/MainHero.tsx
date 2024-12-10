@@ -15,8 +15,8 @@ export function MainHero() {
         <Image
           src={
             isMobile
-              ? "/images/circles/basketball/basketballOS.png"
-              : "/images/circles/basketball/basketballPC.png"
+              ? "/images/circles/basketball/OSバスケ.png"
+              : "/images/circles/basketball/PCバスケ.png"
           }
           alt="Basketball player in motion"
           fill
