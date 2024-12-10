@@ -24,12 +24,6 @@ export function Header() {
             <Link href="#" className="hover:text-gray-300">
               Comingsoon
             </Link>
-            <Link href="#" className="hover:text-gray-300">
-              Comingsoon
-            </Link>
-            <Link href="#" className="hover:text-gray-300">
-              Comingsoon
-            </Link>
           </nav>
           <div className="flex items-center space-x-4">
             <div className="relative hidden md:block">
@@ -49,7 +43,7 @@ export function Header() {
                 )
               }
             >
-              HP無料依頼
+              無料依頼
             </Button>
           </div>
         </div>
