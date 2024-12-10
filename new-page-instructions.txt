@@ -1,0 +1,168 @@
+プロジェクト概要:
+このプロジェクトは大学の部活やサークルを紹介するプラットフォームです。/はPenrryのホームページになっていますが、あくまで実績紹介ページのようなものです。
+/〇〇はそれぞれの部活やサークルのHPへのパスになっています。
+よって、ヘッダーは/〇〇のページにそれぞれのものが存在している必要があります。
+新しいページは、他の既存ページと一貫性を持たせる必要があります。
+あなたには私が言うカテゴリやデザインに合った新しいページのデザインを提案してもらいます。
+
+
+注意点:
+1. サーバーサイドレンダリング(SSR)を利用しているため、`window`や`document`を直接使用する場合は、`useEffect`または`typeof window !== "undefined"`でクライアントサイドの動きに限定してください。
+2. ページはNext.jsの標準構造（`app`ディレクトリ以下）に従い、`.tsx`ファイルで実装してください。
+3. Tailwind CSSを使用しており、クラス名でスタイリングする際は一貫性を保ってください。
+4. ページ内で使用するコンポーネントは必要に応じて`components/〇〇(サークル名)`ディレクトリに作成してください。
+5. どのアイテムもレスポンシブデザインに対応している必要があります。
+6. 画面の端から指定されたスペースを作成し、異なるデバイスサイズに対応するレスポンシブなデザインを実現してください。PC画面では基準となる32pxのスペースを確保する必要があります。そのために、lg:px-12クラスを使用して、大画面（large screens）およびそれ以上のサイズで48px（3rem）のパディングを適用してください。
+モバイルデバイス: 左右に16pxのパディング
+小型画面 (sm): 左右に24pxのパディング
+中型画面 (md): 左右に32pxのパディング
+大型画面 (lg)以上: 左右に48pxのパディング
+7. 基本的にHeroSectionとAboutSection, MembersSection, ActivitiesSection, AchievementsSection, ContactSectionは必ず存在している必要があります。
+8. 写真を使う場合は、ディレクトリ`public/images/a/1`(1~9まで9枚あります)を使ってください。後々サイトに本当の写真を追加していくので、その場しのぎです。
+9. svgを使う場合は、ディレクトリ`public/images/placeholder.svg/`を使ってください。
+10. 組織のアイコンはそれぞれ都度追加するので、その場しのぎとして`public/images/placeholder.svg/`を使ってください。
+11. 各組織のヘッダーには組織名、SNSのアイコンを必ず表示してください。SNSのアイコンは空リンクになるようにしてください。
+
+使用ライブラリ:
+- Next.js: ^13.0.0
+- React: ^18.3.1
+- Tailwind CSS: ^3.4.16
+- Framer Motion: ^11.13.1
+- Three.js: ^0.171.0
+- Prisma: ^4.0.0
+
+ディレクトリ構造:
+|-- app
+|   |-- badminton
+|   |   -- page.tsx
+|   |-- basketball
+|   |   -- page.tsx
+|   |-- globals.css 
+|   |-- layout.tsx
+|   -- page.tsx
+|-- components
+|   |-- ScrollToTop.tsx
+|   |-- badminton
+|   |   |-- AboutSection.tsx
+|   |   |-- ActivitiesSection.tsx
+|   |   |-- BadmintonHero.tsx
+|   |   |-- ContactSection.tsx
+|   |   |-- ElectricTrails.tsx
+|   |   |-- FloatingNav.tsx
+|   |   |-- LightTrails.tsx
+|   |   |-- ShuttlecockGlow.tsx
+|   |   -- TeamSection.tsx
+|   |-- basketball
+|   |   |-- AboutSection.tsx
+|   |   |-- ActivitiesSection.tsx
+|   |   |-- ContactSection.tsx
+|   |   |-- FloatingNav.tsx
+|   |   |-- GeometricFrame.tsx
+|   |   |-- MainHero.tsx
+|   |   |-- MembersSection.tsx
+|   |   -- SectionTransition.tsx
+|   |-- hero
+|   |   |-- Bubble.tsx
+|   |   |-- FloatingPanel.tsx
+|   |   -- FloatingPanelsSection.tsx
+|   |-- layout
+|   |   |-- Footer.tsx
+|   |   |-- Header.tsx
+|   |   |-- MainLayout.tsx
+|   |   -- Navigation.tsx
+|   |-- ui
+|       |-- badge.tsx
+|       |-- button.tsx
+|       |-- card.tsx
+|       -- input.tsx
+|-- hooks
+|   -- useMediaQuery.ts
+|-- lib
+|   -- utils.tsx
+|-- next-env.d.ts
+|-- next.config.js
+|-- package-lock.json
+|-- package.json
+|-- pages
+|   -- api
+|       -- proxy-image.ts
+|-- penrryclub
+|-- postcss.config.js
+|-- public
+|   |-- favicon.ico
+|   -- images
+|       |-- a
+|       |   |-- 1.png
+|       |   |-- 省略.png
+|       |   -- 9.png
+|       |-- circles
+|       |   |-- badminton
+|       |   |   |-- badmintonOS.png(OS用Hero)
+|       |   |   -- badmintonPC.png(PC用Hero)
+|       |   |-- baseball
+|       |   |   |-- baseballOS.png(OS用Hero)
+|       |   |   -- baseballPC.png(PC用Hero)
+|       |-- placeholder.svg
+|-- tailwind.config.js
+|-- tsconfig.json
+|-- tsconfig.tsbuildinfo
+|-- types.d.ts
+
+ページ作成の手順:
+ページ作成の手順:
+1. `app/新しいディレクトリ名`を作成し、その中に`page.tsx`を配置してください。
+2. ディレクトリ`components/新しいディレクトリ名`を作成し、その中に`AboutSection.tsx`、`ActivitiesSection.tsx`、`HeroSection.tsx`、`MembersSection.tsx`、`ContactSection.tsx`、`AchievementsSection.tsx`を配置してください。
+3. ディレクトリ`components/新しいディレクトリ名`の中に装飾用のコンポーネントを配置してください。
+4. Heroimageとして渡された写真を`public/images/circles/新しいディレクトリ名/新しいディレクトリ名OS.png`と`public/images/circles/新しいディレクトリ名/新しいディレクトリ名PC.png`に配置してください。
+5. レスポンシブ対応になっているか、画面左右端からスペースを持つようにmarginをレスポンシブ対応で設定しているか確認してください。
+
+スタイルガイド:
+- Tailwind CSSを使用してレスポンシブ対応を考慮してください。
+- テーマカラーを新しいページごとに決めて統一してください。
+- モーションには`framer-motion`を使用してください。
+
+package.json:
+{
+  "name": "university-clubs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.0.0",
+    "@react-three/drei": "^9.120.4",
+    "@react-three/fiber": "^8.17.10",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.13.1",
+    "lucide-react": "^0.468.0",
+    "maath": "^0.10.8",
+    "next": "^13.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.171.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^13.0.0",
+    "jest": "^29.0.0",
+    "postcss": "^8.4.49",
+    "prettier": "^2.8.8",
+    "prisma": "^4.0.0",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^4.0.0"
+  }
+}
+
