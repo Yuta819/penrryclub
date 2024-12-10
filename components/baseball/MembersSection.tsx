@@ -6,9 +6,9 @@ import { typography } from "@/utils/typography";
 
 export default function MembersSection() {
   const members = [
-    { role: "Captain", image: "/images/a/2" },
-    { role: "Vice Captain", image: "/images/a/3" },
-    { role: "Coach", image: "/images/a/4" },
+    { role: "Captain", image: "/images/a/2.png" },
+    { role: "Vice Captain", image: "/images/a/3.png" },
+    { role: "Coach", image: "/images/a/4.png" },
     // Add more members as needed
   ];
 

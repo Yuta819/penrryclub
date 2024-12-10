@@ -8,19 +8,19 @@ const activities = [
   {
     title: "Regular Practice",
     description: "Honing skills through dedicated training sessions",
-    image: "/images/a/1",
+    image: "/images/a/1.png",
     angle: -3,
   },
   {
     title: "Tournament Games",
     description: "Competing at the highest university level",
-    image: "/images/a/2",
+    image: "/images/a/2.png",
     angle: 3,
   },
   {
     title: "Team Building",
     description: "Strengthening bonds beyond the field",
-    image: "/images/a/3",
+    image: "/images/a/3.png",
     angle: -3,
   },
 ];

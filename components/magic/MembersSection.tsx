@@ -5,9 +5,9 @@ import Image from "next/image";
 import MagicText from "./decorative/MagicText";
 
 const members = [
-  { name: "星野 魔法", role: "会長", image: "/images/a/3" },
-  { name: "月川 幻想", role: "副会長", image: "/images/a/4" },
-  { name: "森田 奇術", role: "イベント企画", image: "/images/a/5" },
+  { name: "星野 魔法", role: "会長", image: "/images/a/3.png" },
+  { name: "月川 幻想", role: "副会長", image: "/images/a/4.png" },
+  { name: "森田 奇術", role: "イベント企画", image: "/images/a/5.png" },
 ];
 
 export default function MembersSection() {

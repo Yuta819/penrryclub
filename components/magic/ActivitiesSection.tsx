@@ -8,17 +8,17 @@ const activities = [
   {
     title: "マジックショー",
     description: "定期的に開催する驚きと感動のパフォーマンス",
-    image: "/images/a/6",
+    image: "/images/a/6.png",
   },
   {
     title: "魔法学習会",
     description: "歴史から最新技術まで、魔法の知識を深める",
-    image: "/images/a/7",
+    image: "/images/a/7.png",
   },
   {
     title: "創造ワークショップ",
     description: "新しいイリュージョンを共に開発する場",
-    image: "/images/a/8",
+    image: "/images/a/8.png",
   },
 ];
 

@@ -6,10 +6,28 @@ import { motion } from "framer-motion";
 
 export const previews = [
   {
-    title: "X Feed",
-    path: "/x",
-    image: "/images/preview-windows/binary-window.png",
+    title: "Robotic",
+    path: "/robot",
+    image: "/images/preview-windows/robot-window.png",
     description: "Explore our tech journey",
+  },
+  {
+    title: "Magic circle",
+    path: "/magic",
+    image: "/images/preview-windows/robot-window.png",
+    description: "Experience the magic",
+  },
+  {
+    title: "Baseball circle",
+    path: "/baseball",
+    image: "/images/preview-windows/baseball-window.png",
+    description: "Play the game",
+  },
+  {
+    title: "Wa-shakuhachi",
+    path: "/biwa-shakuhachi",
+    image: "/images/preview-windows/biwa-shakuhachi-window.png",
+    description: "Feel the Traditional",
   },
   {
     title: "Live Stage",

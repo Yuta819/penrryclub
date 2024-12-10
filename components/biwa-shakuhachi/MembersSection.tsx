@@ -7,9 +7,9 @@ import GridBackground from "./decorative/GridBackground";
 
 export default function MembersSection() {
   const members = [
-    { role: "代表", name: "山田太郎", image: "/images/a/3" },
-    { role: "副代表", name: "鈴木花子", image: "/images/a/4" },
-    { role: "顧問", name: "佐藤先生", image: "/images/a/5" },
+    { role: "代表", name: "山田太郎", image: "/images/a/3.png" },
+    { role: "副代表", name: "鈴木花子", image: "/images/a/4.png" },
+    { role: "顧問", name: "佐藤先生", image: "/images/a/5.png" },
   ];
 
   return (

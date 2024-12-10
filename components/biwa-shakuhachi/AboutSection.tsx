@@ -43,7 +43,7 @@ export default function AboutSection() {
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden">
             <Image
-              src="/images/a/2"
+              src="/images/a/2.png"
               alt="Traditional Instruments"
               fill
               className="object-cover"

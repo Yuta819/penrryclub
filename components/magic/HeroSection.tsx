@@ -43,7 +43,7 @@ export default function HeroSection() {
               className="rounded-lg shadow-2xl hidden md:block"
             />
             <Image
-              src="/images/circles/magic/magicOS.png"
+              src="/images/circles/magic/magiPC.png"
               alt="Magic Circle Hero"
               width={300}
               height={200}

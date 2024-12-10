@@ -9,17 +9,17 @@ const activities = [
   {
     title: "定期練習",
     description: "週に2回の練習を通じて技術を磨きます",
-    image: "/images/a/6",
+    image: "/images/a/6.png",
   },
   {
     title: "演奏会",
     description: "年に数回、公演を開催しています",
-    image: "/images/a/7",
+    image: "/images/a/7.png",
   },
   {
     title: "交流会",
     description: "他大学との合同演奏会も実施",
-    image: "/images/a/8",
+    image: "/images/a/8.png",
   },
 ];
 
