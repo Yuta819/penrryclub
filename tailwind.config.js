@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         cinzel: ["Cinzel", "serif"],
         japanese: ["Noto Serif JP", "serif"],
+        decorative: ["Zen Antique", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
