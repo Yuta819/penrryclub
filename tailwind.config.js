@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        twinkle: "twinkle 4s infinite ease-in-out",
+      },
+      keyframes: {
+        twinkle: {
+          "0%, 100%": { opacity: 0 },
+          "50%": { opacity: 1 },
+        },
+      },
       fontFamily: {
         cinzel: ["Cinzel", "serif"],
         japanese: ["Noto Serif JP", "serif"],
