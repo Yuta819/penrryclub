@@ -6,6 +6,24 @@ import { motion } from "framer-motion";
 
 export const previews = [
   {
+    title: "Hangglider",
+    path: "/hangglider",
+    image: "/images/preview-windows/hangglider-window.png",
+    description: "Feel the freedom",
+  },
+  {
+    title: "Enbu",
+    path: "/enbu",
+    image: "/images/preview-windows/enbu-window.png",
+    description: "Join our dance circle",
+  },
+  {
+    title: "Yosakoi",
+    path: "/yosakoi",
+    image: "/images/preview-windows/yosakoi-window.png",
+    description: "Join our dance circle",
+  },
+  {
     title: "Robotic",
     path: "/robot",
     image: "/images/preview-windows/robot-window.png",
@@ -78,10 +96,16 @@ export const previews = [
     description: "Elevate your game",
   },
   {
-    title: "Yosakoi",
-    path: "/yosakoi",
-    image: "/images/preview-windows/yosakoi-window.png",
-    description: "Join our dance circle",
+    title: "Soccer",
+    path: "/soccer2",
+    image: "/images/preview-windows/soccer2-window.png",
+    description: "Join our soccer circle",
+  },
+  {
+    title: "Basketball",
+    path: "/basketball2",
+    image: "/images/preview-windows/basketball2-window.png",
+    description: "Play the game and enjoy",
   },
 ];
 
