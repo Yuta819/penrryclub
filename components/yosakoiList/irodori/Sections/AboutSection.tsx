@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { DecoratedTitle } from "../Decorations/TextDecorations";
 

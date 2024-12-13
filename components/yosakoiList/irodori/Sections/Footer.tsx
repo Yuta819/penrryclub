@@ -1,3 +1,5 @@
+"use client"; // クライアントコンポーネントとして明示的に指定
+
 import { useState } from "react";
 
 export default function Footer() {
