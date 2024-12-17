@@ -67,7 +67,7 @@ const Cursor = ({
   scope,
 }: {
   hovered: boolean;
-  scope: React.RefObject<HTMLElement>; // AnimationScopeから変更
+  scope: React.RefObject<HTMLElement>;
 }) => {
   return (
     <motion.span

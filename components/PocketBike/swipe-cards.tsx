@@ -46,12 +46,12 @@ const SwipeCards = () => {
 
 const Card = ({
   id,
-  url,
+  src,
   setCards,
   cards,
 }: {
   id: number;
-  url: string;
+  src: string;
   setCards: Dispatch<SetStateAction<Card[]>>;
   cards: Card[];
 }) => {
@@ -97,7 +97,7 @@ const Card = ({
       dragElastic={0.1}
     >
       <img
-        src={url}
+        src={src}
         alt={`Tokyo Scene ${id}`}
         className="w-full h-full object-cover rounded-lg shadow-lg"
         style={{
@@ -118,32 +118,48 @@ export default SwipeCards;
 
 type Card = {
   id: number;
-  url: string;
+  src: string;
 };
 
 const cardData: Card[] = [
   {
     id: 1,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kae-ng-grOTReWUHhU-unsplash.jpg-PY59teQ92L7Quq9Rdl51OTobNtbUCM.jpeg",
+    src: "/images/Bike1.jpg",
   },
   {
     id: 2,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tokyo-tower-5664836_1280.jpg-cVI134XIdMIIwdtWZZeQOVBuuxWY8L.jpeg",
+    src: "/images/Bike2.jpg",
   },
   {
     id: 3,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tokyo-5772125_1280.jpg-eNodreahtmzKnBrk6cSb0NXGruFWfx.jpeg",
+    src: "/images/Bike3.jpg",
   },
   {
     id: 4,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/enix-UQwCk_xtKR8-unsplash.jpg-f4J1Ut0XK6Duc7NMB6n5FxjehrHAPG.jpeg",
+    src: "/images/Bike4.jpg",
   },
   {
     id: 5,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kartabya-aryal-a8o_C0QQHJE-unsplash.jpg-hHhLOI9NmScXTpVM8II3lAXvNVGEug.jpeg",
+    src: "/images/Bike5.jpg",
   },
   {
     id: 6,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/zhuo-cheng-you-Eet5MP9K67c-unsplash.jpg-lvAV1FSyimFMXGVhQKP3o0mf6lKrhu.jpeg",
+    src: "/images/Bike6.jpg",
+  },
+  {
+    id: 7,
+    src: "/images/Bike7.jpg",
+  },
+  {
+    id: 8,
+    src: "/images/Bike8.jpg",
+  },
+  {
+    id: 9,
+    src: "/images/Bike9.jpg",
+  },
+  {
+    id: 10,
+    src: "/images/Bike10.jpg",
   },
 ];
