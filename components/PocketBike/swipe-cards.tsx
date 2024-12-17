@@ -44,7 +44,7 @@ const Card = ({
   });
 
   const handleDragEnd = () => {
-    const swipeThreshold = 50; // Reduced from 100 to 50
+    const swipeThreshold = 2; // Reduced from 100 to 50
     if (Math.abs(x.get()) > swipeThreshold) {
       setCards((pv) => pv.filter((v) => v.id !== id));
     }
