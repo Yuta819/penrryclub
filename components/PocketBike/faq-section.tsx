@@ -1,5 +1,4 @@
-"use client";
-
+'use client'
 import React from "react";
 import { motion } from "framer-motion";
 import { FiMapPin, FiClock, FiPhone, FiMail } from "react-icons/fi";
@@ -8,18 +7,16 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "台車交換の手順は？",
-      answer:
-        "店舗にご連絡もしくは引き渡し時にご確認ください。無料で交換いたします。",
+      answer: "店舗にご連絡もしくは引き渡し時にご確認ください。無料で交換いたします。"
     },
     {
       question: "オプションの在庫確認方法は？",
-      answer:
-        "予約時にお問い合わせいただくか、店舗に直接お電話でご確認ください。",
+      answer: "予約時にお問い合わせいただくか、店舗に直接お電話でご確認ください。"
     },
     {
       question: "支払い方法は？",
-      answer: "現金、銀行振り込み、PayPayのみ対応しています。",
-    },
+      answer: "現金、銀行振り込み、PayPayのみ対応しています。"
+    }
   ];
 
   return (
@@ -34,9 +31,7 @@ const FAQSection = () => {
           transition={{ duration: 0.5 }}
           className="relative text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            よくある質問とお問い合わせ
-          </h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">よくある質問とお問い合わせ</h2>
         </motion.div>
 
         <div className="relative grid gap-8 md:grid-cols-3 mb-16">
@@ -48,9 +43,7 @@ const FAQSection = () => {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {faq.question}
-              </h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{faq.question}</h3>
               <p className="text-gray-600">{faq.answer}</p>
             </motion.div>
           ))}
@@ -63,43 +56,30 @@ const FAQSection = () => {
             transition={{ duration: 0.5 }}
             className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              アクセス情報
-            </h3>
-            <h4 className="text-xl font-semibold text-gray-800 mb-2">
-              受け渡し場所の情報
-            </h4>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">アクセス情報</h3>
+            <h4 className="text-xl font-semibold text-gray-800 mb-2">受け渡し場所の情報</h4>
             <div className="space-y-2">
               <div className="flex items-center">
                 <FiMapPin className="w-5 h-5 mr-2 text-purple-600" />
-                <p className="text-gray-600">
-                  <strong>住所：</strong>西池袋公園（池袋駅西口から徒歩4分）
-                </p>
+                <p className="text-gray-600"><strong>住所：</strong>西池袋公園（池袋駅西口から徒歩4分）</p>
               </div>
               <div className="flex items-center">
                 <FiClock className="w-5 h-5 mr-2 text-purple-600" />
-                <p className="text-gray-600">
-                  <strong>営業時間：</strong>いつでもご連絡ください
-                </p>
+                <p className="text-gray-600"><strong>営業時間：</strong>いつでもご連絡ください</p>
               </div>
             </div>
-            <h4 className="text-xl font-semibold text-gray-800 mt-4 mb-2">
-              連絡先情報
-            </h4>
+            <h4 className="text-xl font-semibold text-gray-800 mt-4 mb-2">連絡先情報</h4>
             <div className="space-y-2">
               <div className="flex items-center">
                 <FiPhone className="w-5 h-5 mr-2 text-purple-600" />
-                <a
-                  href="tel:070-2164-3618"
-                  className="text-gray-600 hover:text-purple-600 transition-colors"
-                >
+                <a href="tel:070-2164-3618" className="text-gray-600 hover:text-purple-600 transition-colors">
                   <strong>電話番号：</strong>070-2164-3618
                 </a>
               </div>
               <div className="flex items-center">
                 <FiMail className="w-5 h-5 mr-2 text-purple-600" />
-                <a
-                  href="mailto:chibatakumi0917@gmail.com?subject=PocketBikeに関する相談"
+                <a 
+                  href="mailto:chibatakumi0917@gmail.com?subject=PocketBikeに関する相談" 
                   className="text-gray-600 hover:text-purple-600 transition-colors"
                 >
                   <strong>メールアドレス：</strong>chibatakumi0917@gmail.com
@@ -131,3 +111,4 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
+

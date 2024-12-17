@@ -1,12 +1,11 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { useAnimate, motion } from "framer-motion"; // AnimationScopeを削除
+import { useAnimate, motion } from "framer-motion";
 import { FiMenu, FiArrowUpRight } from "react-icons/fi";
-import useMeasure from "react-use-measure";
 import Link from "next/link";
 
-export default function Header() {
+function Header() {
   return <GlassNavigation />;
 }
 
@@ -89,7 +88,7 @@ const Cursor = ({
 
 const Logo = () => (
   <Link
-    href="/"
+    href="/PocketBike"
     className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-2xl sm:text-3xl md:text-4xl font-black text-white mix-blend-overlay whitespace-nowrap"
   >
     PocketBike
@@ -98,45 +97,51 @@ const Logo = () => (
 
 const Links = () => (
   <div className="hidden md:flex items-center gap-1 lg:gap-2">
-    <GlassLink text="料金" href="#pricing" />
-    <GlassLink text="予約/Q&A" href="#reservation" />
+    <GlassLink text="料金" href="/PocketBike#pricing" />
+    <GlassLink text="予約/Q&A" href="/PocketBike#reservation" />
   </div>
 );
 
-const GlassLink = ({ text, href }: { text: string; href: string }) => (
-  <Link
-    href={href}
-    className="group relative scale-100 overflow-hidden rounded-lg px-2 lg:px-4 py-1 lg:py-2 transition-transform hover:scale-105 active:scale-95 text-sm lg:text-base"
-    onClick={(e) => {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    }}
-  >
-    <span className="relative z-10 text-white/90 transition-colors group-hover:text-white">
-      {text}
-    </span>
-    <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
-  </Link>
-);
+const GlassLink = ({ text, href }: { text: string; href: string }) => {
+  return (
+    <Link
+      href={href}
+      className="group relative scale-100 overflow-hidden rounded-lg px-2 lg:px-4 py-1 lg:py-2 transition-transform hover:scale-105 active:scale-95 text-sm lg:text-base"
+      onClick={(e) => {
+        e.preventDefault();
+        const targetId = href.split("#")[1];
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }}
+    >
+      <span className="relative z-10 text-white/90 transition-colors group-hover:text-white">
+        {text}
+      </span>
+      <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
+    </Link>
+  );
+};
 
-const TextLink = ({ text, href }: { text: string; href: string }) => (
-  <Link
-    href={href}
-    className="text-white/90 transition-colors hover:text-white text-sm sm:text-base"
-    onClick={(e) => {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    }}
-  >
-    {text}
-  </Link>
-);
+const TextLink = ({ text, href }: { text: string; href: string }) => {
+  return (
+    <Link
+      href={href}
+      className="text-white/90 transition-colors hover:text-white text-sm sm:text-base"
+      onClick={(e) => {
+        e.preventDefault();
+        const targetId = href.split("#")[1];
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }}
+    >
+      {text}
+    </Link>
+  );
+};
 
 const Buttons = ({
   setMenuOpen,
@@ -164,39 +169,48 @@ const Buttons = ({
   </div>
 );
 
-const SignInButton = () => (
-  <a
-    href="tel:070-2164-3618"
-    className="group relative scale-100 overflow-hidden rounded-lg px-2 lg:px-4 py-1 lg:py-2 transition-transform hover:scale-105 active:scale-95 text-sm lg:text-base"
-  >
-    <span className="relative z-10 text-white/90 transition-colors group-hover:text-white">
-      070-2164-3618
-    </span>
-    <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
-  </a>
-);
+const SignInButton = () => {
+  return (
+    <a
+      href="tel:070-2164-3618"
+      className="group relative scale-100 overflow-hidden rounded-lg px-2 lg:px-4 py-1 lg:py-2 transition-transform hover:scale-105 active:scale-95 text-sm lg:text-base"
+    >
+      <span className="relative z-10 text-white/90 transition-colors group-hover:text-white">
+        070-2164-3618
+      </span>
+      <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
+    </a>
+  );
+};
 
 const MobileMenu = ({ menuOpen }: { menuOpen: boolean }) => {
-  const [ref, { height }] = useMeasure();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (menuRef.current) {
+      menuRef.current.style.height = menuOpen
+        ? `${menuRef.current.scrollHeight}px`
+        : "0px";
+    }
+  }, [menuOpen]);
+
   return (
-    <motion.div
-      initial={false}
-      animate={{
-        height: menuOpen ? height : "0px",
-      }}
-      className="block overflow-hidden md:hidden"
+    <div
+      ref={menuRef}
+      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+        menuOpen ? "opacity-100" : "opacity-0"
+      }`}
     >
-      <div
-        ref={ref}
-        className="flex flex-col sm:flex-row items-center justify-between px-4 py-2 sm:py-3"
-      >
+      <div className="flex flex-col sm:flex-row items-center justify-between px-4 py-2 sm:py-3">
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mb-2 sm:mb-0">
-          <TextLink text="料金" href="#pricing" />
-          <TextLink text="予約" href="#reservation" />
-          <TextLink text="Q＆A" href="#faq" />
+          <TextLink text="料金" href="/PocketBike#pricing" />
+          <TextLink text="予約" href="/PocketBike#reservation" />
+          <TextLink text="Q＆A" href="/PocketBike#faq" />
         </div>
         <SignInButton />
       </div>
-    </motion.div>
+    </div>
   );
 };
+
+export default GlassNavigation;

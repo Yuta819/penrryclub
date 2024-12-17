@@ -1,12 +1,10 @@
 "use client";
-
 import React from "react";
 import { IconType as ReactIconType } from "react-icons";
 import { FiShield, FiBookOpen, FiAlertTriangle } from "react-icons/fi";
 import { CurrencyYenIcon } from "@heroicons/react/24/outline";
 import { PiMotorcycleFill } from "react-icons/pi";
 import { BsBasket3Fill, BsBox, BsPhone } from "react-icons/bs";
-import BikeList from "./bike-list";
 import PricingSection from "./pricing-section";
 import ReservationProcess from "./reservation-process";
 import { motion } from "framer-motion";
@@ -49,7 +47,6 @@ const FeatureCards = () => {
         <Card title="リアボックス" subtitle="500円" Icon={BsBox} />
         <Card title="スマホホルダー" subtitle="500円" Icon={BsPhone} />
       </div>
-      <BikeList />
       <PricingSection />
       <motion.div
         initial={{ opacity: 0 }}
@@ -70,7 +67,7 @@ interface CardType {
 
 const Card = ({ title, subtitle, Icon }: CardType) => {
   return (
-    <div className="w-full p-4 rounded border-[1px] border-slate-600 relative overflow-hidden group bg-neutral-800">
+    <a className="w-full p-4 rounded border-[1px] border-slate-600 relative overflow-hidden group bg-neutral-800">
       <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-300" />
 
       <Icon className="absolute z-10 -top-12 -right-12 w-36 h-36 text-neutral-700 group-hover:text-violet-400 group-hover:rotate-12 transition-transform duration-300" />
@@ -82,7 +79,7 @@ const Card = ({ title, subtitle, Icon }: CardType) => {
       <p className="text-slate-400 group-hover:text-violet-200 relative z-10 duration-300">
         {subtitle}
       </p>
-    </div>
+    </a>
   );
 };
 

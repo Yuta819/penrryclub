@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import {
   FiPhone,
@@ -11,7 +10,16 @@ import {
   FiAlertCircle,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
-import styled from "styled-components";
+
+const blobAnimation = `
+  @keyframes blob-bounce {
+    0% { transform: translate(-100%, -100%) translate3d(0, 0, 0); }
+    25% { transform: translate(-100%, -100%) translate3d(100%, 0, 0); }
+    50% { transform: translate(-100%, -100%) translate3d(100%, 100%, 0); }
+    75% { transform: translate(-100%, -100%) translate3d(0, 100%, 0); }
+    100% { transform: translate(-100%, -100%) translate3d(0, 0, 0); }
+  }
+`;
 
 const ReservationProcess = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
@@ -160,98 +168,35 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, items, blobColor }) => {
   const IconComponent = title === "安全サポート" ? FiShield : FiAlertTriangle;
   return (
-    <StyledWrapper $blobColor={blobColor}>
-      <div className="card">
-        <div className="bg">
-          <div className="flex items-center mb-4">
-            <IconComponent className="w-6 h-6 mr-2" />
-            <h3 className="text-xl font-bold">{title}</h3>
-          </div>
-          <ul className="space-y-2">
-            {items.map((item, index) => (
-              <li key={index} className="flex items-start">
-                {title === "安全サポート" ? (
-                  <FiCheck className="w-5 h-5 mr-2 mt-1 flex-shrink-0 text-green-500" />
-                ) : (
-                  <FiAlertCircle className="w-5 h-5 mr-2 mt-1 flex-shrink-0 text-red-500" />
-                )}
-                <span className="text-sm">{item}</span>
-              </li>
-            ))}
-          </ul>
+    <div className="relative w-full max-w-[300px] h-[250px] rounded-[14px] overflow-hidden flex flex-col items-center justify-center mx-auto">
+      <div className="absolute top-[5px] left-[5px] right-[5px] bottom-[5px] z-[2] bg-[rgba(200,200,200,0.55)] backdrop-blur-[24px] rounded-[10px] overflow-hidden outline-[2px] outline-white p-[10px]">
+        <div className="flex items-center mb-4">
+          <IconComponent className="w-6 h-6 mr-2" />
+          <h3 className="text-xl font-bold">{title}</h3>
         </div>
-        <div className="blob" />
+        <ul className="space-y-2">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-start">
+              {title === "安全サポート" ? (
+                <FiCheck className="w-5 h-5 mr-2 mt-1 flex-shrink-0 text-green-500" />
+              ) : (
+                <FiAlertCircle className="w-5 h-5 mr-2 mt-1 flex-shrink-0 text-red-500" />
+              )}
+              <span className="text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-    </StyledWrapper>
+      <div
+        className="absolute z-[1] top-1/2 left-1/2 w-[150px] h-[150px] rounded-full opacity-100 blur-[12px]"
+        style={{
+          backgroundColor: blobColor,
+          animation: "blob-bounce 5s infinite ease",
+        }}
+      />
+      <style jsx>{blobAnimation}</style>
+    </div>
   );
 };
-
-const StyledWrapper = styled.div<{ $blobColor: string }>`
-  .card {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    height: 250px;
-    border-radius: 14px;
-    z-index: 1111;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-  }
-
-  .bg {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    z-index: 2;
-    background: rgba(200, 200, 200, 0.55);
-    backdrop-filter: blur(24px);
-    border-radius: 10px;
-    overflow: hidden;
-    outline: 2px solid white;
-    padding: 10px;
-  }
-
-  .blob {
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: ${(props) => props.$blobColor};
-    opacity: 1;
-    filter: blur(12px);
-    animation: blob-bounce 5s infinite ease;
-  }
-
-  @keyframes blob-bounce {
-    0% {
-      transform: translate(-100%, -100%) translate3d(0, 0, 0);
-    }
-
-    25% {
-      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
-    }
-
-    50% {
-      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
-    }
-
-    75% {
-      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
-    }
-
-    100% {
-      transform: translate(-100%, -100%) translate3d(0, 0, 0);
-    }
-  }
-`;
 
 export default ReservationProcess;
