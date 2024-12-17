@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Header from "@/components/PocketBike/header";
 import HeroSection from "@/components/PocketBike/hero-section";

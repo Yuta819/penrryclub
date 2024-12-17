@@ -12,20 +12,16 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: "PocketBike | 池袋",
   description: "池袋で始めるバイクのある生活。50㏄バイクで東京生活を楽しもう。",
-  icons: {
-    icon: [
-      {
-        media: "(prefers-color-scheme: light)",
-        url: "/PocketBike/favicon-light.svg",
-        href: "/PocketBike/favicon-light.svg",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        url: "/PocketBike/favicon-dark.svg",
-        href: "/PocketBike/favicon-dark.svg",
-      },
-    ],
-  },
+  icons: [
+    {
+      media: "(prefers-color-scheme: light)",
+      url: "/images/PocketBike/favicon-light.svg",
+    },
+    {
+      media: "(prefers-color-scheme: dark)",
+      url: "/images/PocketBike/favicon-dark.svg",
+    },
+  ],
 };
 
 export default function RootLayout({
