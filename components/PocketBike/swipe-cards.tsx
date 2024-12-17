@@ -31,7 +31,6 @@ const SwipeCards = () => {
     <div
       className="grid h-full w-full place-items-center bg-neutral-100 rounded-lg overflow-hidden"
       style={{
-        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='%23d4d4d4'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
         backgroundSize: gridSize,
       }}
     >
@@ -46,12 +45,12 @@ const SwipeCards = () => {
 
 const Card = ({
   id,
-  src,
+  img,
   setCards,
   cards,
 }: {
   id: number;
-  src: string;
+  img: string;
   setCards: Dispatch<SetStateAction<Card[]>>;
   cards: Card[];
 }) => {
@@ -97,7 +96,7 @@ const Card = ({
       dragElastic={0.1}
     >
       <img
-        src={src}
+        src={img}
         alt={`Tokyo Scene ${id}`}
         className="w-full h-full object-cover rounded-lg shadow-lg"
         style={{
@@ -118,48 +117,48 @@ export default SwipeCards;
 
 type Card = {
   id: number;
-  src: string;
+  img: string;
 };
 
 const cardData: Card[] = [
   {
     id: 1,
-    src: "@/images/PocketBike/Bike1.jpg",
+    img: "/images/PocketBike/Bike1.jpg",
   },
   {
     id: 2,
-    src: "@/images/PocketBike/Bike2.jpg",
+    img: "/images/PocketBike/Bike2.jpg",
   },
   {
     id: 3,
-    src: "@/images/PocketBike/Bike3.jpg",
+    img: "/images/PocketBike/Bike3.jpg",
   },
   {
     id: 4,
-    src: "@/images/PocketBike/Bike4.jpg",
+    img: "/images/PocketBike/Bike4.jpg",
   },
   {
     id: 5,
-    src: "@/images/PocketBike/Bike5.jpg",
+    img: "/images/PocketBike/Bike5.jpg",
   },
   {
     id: 6,
-    src: "@/images/PocketBike/Bike6.jpg",
+    img: "/images/PocketBike/Bike6.jpg",
   },
   {
     id: 7,
-    src: "@/images/PocketBike/Bike7.jpg",
+    img: "/images/PocketBike/Bike7.jpg",
   },
   {
     id: 8,
-    src: "@/images/PocketBike/Bike8.jpg",
+    img: "/images/PocketBike/Bike8.jpg",
   },
   {
     id: 9,
-    src: "@/images/PocketBike/Bike9.jpg",
+    img: "/images/PocketBike/Bike9.jpg",
   },
   {
     id: 10,
-    src: "@/images/PocketBike/Bike10.jpg",
+    img: "/images/PocketBike/Bike10.jpg",
   },
 ];
