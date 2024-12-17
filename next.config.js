@@ -6,4 +6,8 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = {
+  compiler: {
+    styledComponents: true, // 自動でstyled-componentsをSSR対応にする
+  },
+};

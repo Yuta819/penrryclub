@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
             <p className="mt-4 text-lg text-gray-300 sm:text-xl lg:text-2xl">
               小回りと小さな移動が多い東京生活。50㏄バイクで楽しちゃおう。
             </p>
-            <div className="mt-8" ref="https://line.me/R/ti/p/@273smptm">
+            <div className="mt-8">
               <button
                 className="bg-gradient-to-r from-violet-500 to-indigo-500 hover:from-violet-600 hover:to-indigo-600 text-white px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
                 onClick={() =>

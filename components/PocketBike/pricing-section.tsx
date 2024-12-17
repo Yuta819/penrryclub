@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
 import { CurrencyYenIcon } from "@heroicons/react/24/outline";
 import { BsBasket3Fill, BsBox, BsPhone } from "react-icons/bs";
+import React, { useState, useEffect } from "react";
 
 const sparkleKeyframes = `
   @keyframes sparkle {
@@ -12,6 +12,21 @@ const sparkleKeyframes = `
 `;
 
 const PricingSection = () => {
+  const [sparkles, setSparkles] = useState<
+    { left: string; top: string; duration: string }[]
+  >([]);
+
+  useEffect(() => {
+    // クライアントサイドでランダム値を生成
+    const generateSparkles = () =>
+      Array.from({ length: 5 }).map(() => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: `${1 + Math.random() * 2}s`,
+      }));
+    setSparkles(generateSparkles());
+  }, []);
+
   return (
     <div
       id="pricing"
@@ -23,19 +38,16 @@ const PricingSection = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 via-violet-100/20 to-orange-100/20 opacity-70"></div>
 
           <div className="relative max-w-7xl mx-auto p-6 sm:p-8 lg:p-10">
-            {" "}
-            {/*This line is kept as it's inside the new container and needed for inner elements*/}
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-black">料金プラン</h2>
               <p className="mt-4 text-lg text-gray-800">
                 シンプルで分かりやすい料金体系です
               </p>
             </div>
-            {/* Pricing Card with gradient border effect */}
-            <div className="relative">
-              {/* Gradient border effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 via-violet-100 to-orange-100 rounded-2xl blur-lg opacity-75"></div>
 
+            {/* Pricing Card */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 via-violet-100 to-orange-100 rounded-2xl blur-lg opacity-75"></div>
               <div className="relative bg-white rounded-xl shadow-xl overflow-hidden">
                 <div className="p-8">
                   {/* Basic Plans */}
@@ -59,16 +71,14 @@ const PricingSection = () => {
                         <p className="relative z-10 text-2xl font-bold text-gray-900">
                           ¥10,000
                         </p>
-                        {[...Array(5)].map((_, i) => (
+                        {sparkles.map((sparkle, i) => (
                           <div
                             key={i}
                             className="absolute w-1 h-1 bg-yellow-500 rounded-full"
                             style={{
-                              left: `${Math.random() * 100}%`,
-                              top: `${Math.random() * 100}%`,
-                              animation: `sparkle ${
-                                1 + Math.random() * 2
-                              }s linear infinite`,
+                              left: sparkle.left,
+                              top: sparkle.top,
+                              animation: `sparkle ${sparkle.duration} linear infinite`,
                             }}
                           ></div>
                         ))}
@@ -132,48 +142,9 @@ const PricingSection = () => {
                 </div>
               </div>
             </div>
+
             {/* Special Offer */}
-            <div className="mt-12 relative">
-              <style>{sparkleKeyframes}</style>
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-300 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-              <div className="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                <svg
-                  className="w-8 h-8 text-yellow-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    d="M6.75 6.75C6.75 5.64543 7.64543 4.75 8.75 4.75H15.25C16.3546 4.75 17.25 5.64543 17.25 6.75V19.25L12 14.75L6.75 19.25V6.75Z"
-                  ></path>
-                </svg>
-                <div className="space-y-2">
-                  <p className="text-slate-800 font-medium">
-                    ヘルメット持参の方限定オファー
-                  </p>
-                  <p className="text-slate-600">
-                    オプションサービス1つが
-                    <span className="font-bold text-orange-500">無料</span>に！
-                  </p>
-                </div>
-              </div>
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute top-0 left-0 w-1 h-1 bg-yellow-500 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    animation: `sparkle ${
-                      1 + Math.random() * 2
-                    }s linear infinite`,
-                  }}
-                ></div>
-              ))}
-            </div>
+            <style>{sparkleKeyframes}</style>
             <div className="text-center mt-8 text-sm text-gray-500">
               ※
               料金はすべて税込表示です。ヘルメット持参の方は、オプションサービス1つが無料になります。
