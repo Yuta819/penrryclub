@@ -124,42 +124,42 @@ type Card = {
 const cardData: Card[] = [
   {
     id: 1,
-    src: "/images/Bike1.jpg",
+    src: "@/images/PocketBike/Bike1.jpg",
   },
   {
     id: 2,
-    src: "/images/Bike2.jpg",
+    src: "@/images/PocketBike/Bike2.jpg",
   },
   {
     id: 3,
-    src: "/images/Bike3.jpg",
+    src: "@/images/PocketBike/Bike3.jpg",
   },
   {
     id: 4,
-    src: "/images/Bike4.jpg",
+    src: "@/images/PocketBike/Bike4.jpg",
   },
   {
     id: 5,
-    src: "/images/Bike5.jpg",
+    src: "@/images/PocketBike/Bike5.jpg",
   },
   {
     id: 6,
-    src: "/images/Bike6.jpg",
+    src: "@/images/PocketBike/Bike6.jpg",
   },
   {
     id: 7,
-    src: "/images/Bike7.jpg",
+    src: "@/images/PocketBike/Bike7.jpg",
   },
   {
     id: 8,
-    src: "/images/Bike8.jpg",
+    src: "@/images/PocketBike/Bike8.jpg",
   },
   {
     id: 9,
-    src: "/images/Bike9.jpg",
+    src: "@/images/PocketBike/Bike9.jpg",
   },
   {
     id: 10,
-    src: "/images/Bike10.jpg",
+    src: "@/images/PocketBike/Bike10.jpg",
   },
 ];
