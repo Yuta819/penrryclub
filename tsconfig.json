@@ -28,7 +28,8 @@
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
       "@/components/ui/*": ["components/ui/*"],
-      "@/images/*": ["public/images/*"]
+      "@/images/*": ["public/images/*"],
+      "@/*": ["./*"]
     },
     "target": "ES2017"
   },
